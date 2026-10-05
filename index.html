@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fisherman's Charm: a cozy fishing game for iPhone</title>
+<meta name="description" content="Cast with a slingshot, time your reel, and fill a 100-fish journal across five islands, with a rescued pup at your side. A cozy pixel-art fishing game for iPhone, $3.99, no ads.">
+<meta name="theme-color" content="#0f3d52">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fisherman's Charm">
+<meta property="og:description" content="A cozy pixel-art fishing game for iPhone. Slingshot casts, a timing reel, 100 fish to collect, and a rescued pup for company. $3.99, no ads.">
+<!-- Once the site is hosted, make this an absolute URL (https://your-domain/img/og.jpg) so link previews work. -->
+<meta property="og:image" content="img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sea-deep: #0f3d52;
+    --sea: #1a6f8a;
+    --sea-light: #8fd6e0;
+    --sand: #fff4dc;
+    --sand-dark: #f2dfb8;
+    --gold: #ffc94a;
+    --gold-deep: #e39a1d;
+    --wood: #5a3a22;
+    --wood-light: #8a5a35;
+    --ink: #2b1d12;
+    --ink-soft: #6a5240;
+    --radius: 18px;
+    --max: 1120px;
+    --gutter: 20px;
+    --font-pixel: "Pixelify Sans", "Courier New", monospace;
+    --font-body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--sand);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+  .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+  h1, h2, h3 { font-family: var(--font-pixel); line-height: 1.1; margin: 0; letter-spacing: 0.01em; }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 52px; padding: 0 26px;
+    font: 700 19px/1 var(--font-pixel);
+    color: var(--ink); background: var(--gold);
+    border: 3px solid var(--wood); border-radius: 14px;
+    box-shadow: 0 5px 0 var(--wood);
+    text-decoration: none; cursor: pointer;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:hover { transform: translateY(2px); box-shadow: 0 3px 0 var(--wood); }
+  .btn:active { transform: translateY(5px); box-shadow: 0 0 0 var(--wood); }
+  .btn:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: 0 0 0 6px var(--sea); }
+  .btn.ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.7); box-shadow: none; }
+  .btn.ghost:hover { background: rgba(255,255,255,.14); transform: none; }
+  .btn[aria-disabled="true"] { cursor: default; }
+
+  /* ---------- nav ---------- */
+  .nav { position: absolute; inset: 0 0 auto 0; z-index: 5; }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .brand { font: 700 22px var(--font-pixel); color: #fff; text-decoration: none; text-shadow: 0 2px 0 rgba(0,0,0,.35); }
+  .nav ul { display: none; list-style: none; margin: 0; padding: 0; gap: 28px; }
+  .nav ul a { color: #fff; text-decoration: none; font-weight: 800; font-size: 16px; text-shadow: 0 1px 0 rgba(0,0,0,.4); }
+  .nav ul a:hover { text-decoration: underline; text-underline-offset: 5px; }
+  @media (min-width: 760px) { .nav ul { display: flex; } }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative; color: #fff; overflow: hidden;
+    padding: 120px 0 96px;
+    background:
+      radial-gradient(900px 500px at 85% 10%, rgba(255,201,74,.35), transparent 60%),
+      linear-gradient(180deg, #17607b 0%, var(--sea-deep) 100%);
+  }
+  .hero::after { /* waves along the bottom edge */
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 38px;
+    background:
+      radial-gradient(circle at 18px 38px, var(--sand) 17px, transparent 18px) 0 0 / 36px 38px repeat-x;
+  }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; align-items: center; }
+  .eyebrow { font: 800 14px var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin: 0 0 14px; }
+  .hero h1 { font-size: clamp(44px, 9vw, 84px); text-shadow: 0 4px 0 rgba(0,0,0,.3); }
+  .hero h1 span { color: var(--gold); display: block; }
+  .lede { font-size: clamp(18px, 2.4vw, 22px); max-width: 34ch; margin: 22px 0 32px; color: #e6f6f8; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .price-note { margin: 18px 0 0; font-size: 15px; color: var(--sea-light); font-weight: 600; }
+  .art { justify-self: center; width: min(70vw, 300px); position: relative; }
+  .art img { border-radius: 26px; border: 5px solid var(--wood); box-shadow: 0 24px 50px rgba(0,0,0,.45), 0 0 0 8px rgba(255,255,255,.08); }
+  @media (min-width: 900px) {
+    .hero { padding: 150px 0 120px; }
+    .hero .wrap { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); }
+    .art { width: 340px; transform: rotate(2.5deg); }
+  }
+
+  /* ---------- sections ---------- */
+  section { padding: 84px 0; }
+  .kicker { font: 800 14px var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--gold-deep); margin: 0 0 10px; }
+  h2 { font-size: clamp(32px, 5vw, 48px); }
+  .sub { color: var(--ink-soft); max-width: 52ch; margin: 14px 0 0; }
+
+  /* how it plays */
+  .steps { display: grid; gap: 22px; margin-top: 44px; counter-reset: step; }
+  .step {
+    background: #fff; border: 3px solid var(--wood); border-radius: var(--radius);
+    padding: 22px 22px 26px; box-shadow: 0 6px 0 var(--sand-dark); position: relative;
+  }
+  .step::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; top: -18px; left: 20px; width: 40px; height: 40px; border-radius: 50%;
+    display: grid; place-items: center; font: 700 22px var(--font-pixel);
+    background: var(--gold); border: 3px solid var(--wood);
+  }
+  .step h3 { font-size: 26px; margin: 8px 0 8px; }
+  .step p { margin: 0; color: var(--ink-soft); font-size: 17px; }
+  @media (min-width: 800px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+
+  /* features */
+  .features { background: var(--sea-deep); color: #fff; position: relative; }
+  .features .kicker { color: var(--gold); }
+  .features .sub { color: #bfe3ea; }
+  .grid { display: grid; gap: 18px; margin-top: 44px; }
+  @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 980px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  .card { background: rgba(255,255,255,.07); border: 2px solid rgba(255,255,255,.16); border-radius: var(--radius); padding: 24px; }
+  .card .num { font: 700 38px var(--font-pixel); color: var(--gold); line-height: 1; }
+  .card h3 { font-size: 24px; margin: 10px 0 8px; }
+  .card p { margin: 0; color: #cfe9ee; font-size: 17px; }
+
+  /* gallery */
+  .gallery-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px; }
+  .hint { font-size: 14px; color: var(--ink-soft); font-weight: 600; margin: 0; }
+  .shots {
+    display: flex; gap: 22px; overflow-x: auto; padding: 38px var(--gutter) 30px;
+    margin: 0 calc(var(--gutter) * -1); scroll-snap-type: x mandatory; scrollbar-width: thin;
+    scrollbar-color: var(--wood-light) transparent;
+  }
+  .shot { flex: 0 0 min(66vw, 270px); scroll-snap-align: center; margin: 0; }
+  .phone {
+    background: #1b1410; border-radius: 30px; padding: 9px;
+    box-shadow: 0 14px 30px rgba(43,29,18,.28), 0 0 0 3px var(--wood);
+  }
+  .phone img { border-radius: 22px; aspect-ratio: 9 / 16; object-fit: cover; width: 100%; height: auto; }
+  .shot figcaption { margin: 14px 4px 0; font-weight: 800; font-size: 16px; }
+  .shot figcaption small { display: block; font-weight: 600; color: var(--ink-soft); font-size: 14px; }
+
+  /* pup */
+  .pup { background: linear-gradient(180deg, var(--sand) 0%, var(--sand-dark) 100%); }
+  .pup .wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; align-items: center; }
+  .pup .phone { max-width: 270px; justify-self: center; }
+  @media (min-width: 860px) { .pup .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .pup .phone { justify-self: start; } }
+  .pup p { color: var(--ink-soft); max-width: 46ch; }
+
+  /* buy */
+  .buy { background: linear-gradient(180deg, #17607b 0%, var(--sea-deep) 100%); color: #fff; text-align: center; }
+  .buy .wrap { max-width: 720px; }
+  .buy h2 { color: var(--gold); }
+  .price { font: 700 clamp(56px, 12vw, 96px)/1 var(--font-pixel); margin: 22px 0 6px; text-shadow: 0 4px 0 rgba(0,0,0,.3); }
+  .buy ul { list-style: none; padding: 0; margin: 20px auto 34px; display: inline-grid; gap: 8px; text-align: left; font-weight: 700; }
+  .buy li::before { content: "✓"; color: var(--gold); font-weight: 800; margin-right: 10px; }
+  form.signup { margin: 36px auto 0; display: none; gap: 10px; max-width: 460px; }
+  form.signup.on { display: flex; flex-wrap: wrap; }
+  form.signup input[type=email] {
+    flex: 1 1 240px; min-height: 52px; padding: 0 16px; border-radius: 14px; border: 3px solid var(--wood);
+    font: 600 17px var(--font-body); background: #fff; color: var(--ink);
+  }
+  .signup-label { display: none; margin: 34px 0 0; color: var(--sea-light); font-weight: 700; }
+  .signup-label.on { display: block; }
+
+  footer { background: #0a2a3a; color: #9cc6d0; padding: 40px 0; font-size: 15px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 30px; }
+  footer strong { color: #fff; font-family: var(--font-pixel); font-size: 18px; }
+
+  /* reveal on scroll (only when JS runs and motion is allowed) */
+  .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .js .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Fisherman's Charm</a>
+    <ul>
+      <li><a href="#how">How it plays</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#screens">Screenshots</a></li>
+      <li><a href="#buy">Get the game</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ================= hero ================= -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">A cozy fishing game for iPhone</p>
+        <h1 id="hero-title">Fisherman's <span>Charm</span></h1>
+        <p class="lede">Pull back your line like a slingshot, tap the Green, and fill a journal of 100 fish across five islands. A rescued pup keeps you company.</p>
+        <div class="cta-row">
+          <a class="btn" href="#buy" aria-disabled="true">Coming soon · $3.99</a>
+          <a class="btn ghost" href="#how">See how it plays</a>
+        </div>
+        <p class="price-note">One price. No ads. Made for one-handed play.</p>
+      </div>
+      <div class="art">
+        <img src="img/key-art.webp" width="941" height="1672" alt="Key art: a fisherman and his corgi on a wooden pier at sunrise, a bobber floating on the bright water and fish swimming below" fetchpriority="high">
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= how it plays ================= -->
+  <section id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <p class="kicker">How it plays</p>
+      <h2 id="how-title">Three taps from calm to catch</h2>
+      <p class="sub">A relaxed loop you can pick up in a minute and play in the time it takes the kettle to boil.</p>
+      <div class="steps">
+        <article class="step reveal">
+          <h3>Cast</h3>
+          <p>Press on your fisherman, pull back like a slingshot, and let go. Aim for the ripples: bigger rings mean bigger fish.</p>
+        </article>
+        <article class="step reveal">
+          <h3>Reel</h3>
+          <p>Tap when the arrow sits in the Green. Yellow is fine, Red hurts. Every fish fights in its own way, from calm to darting to downright sneaky.</p>
+        </article>
+        <article class="step reveal">
+          <h3>Collect</h3>
+          <p>Keep your best catches, sell the rest to Old Marlow, and craft permanent charms from the fish you've sold.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= features ================= -->
+  <section id="features" class="features" aria-labelledby="feat-title">
+    <div class="wrap">
+      <p class="kicker">What's in the boat</p>
+      <h2 id="feat-title">A whole world to fish through</h2>
+      <p class="sub">Five islands, a bar full of jobs, and a stubborn old mentor who misses the water.</p>
+      <div class="grid">
+        <article class="card reveal"><div class="num">100</div><h3>Fish to find</h3><p>Fill your journal one silhouette at a time. Every species has its own size record, and some of them are legendary.</p></article>
+        <article class="card reveal"><div class="num">5</div><h3>Islands to sail</h3><p>From Pebble Pond to the deep reef. Finish Marlow's jobs, earn medals, and unlock the next boat. Watch out for the giants out at sea.</p></article>
+        <article class="card reveal"><div class="num">✦</div><h3>Charms you craft</h3><p>Sell the right fish and Marlow makes you a permanent charm: calmer fish, wider Green zones, even a second wind when the line goes slack.</p></article>
+        <article class="card reveal"><div class="num">☀</div><h3>Time and weather</h3><p>Pick the hour and watch the sky. Mornings bite more often; dusk and night hide the rare ones.</p></article>
+        <article class="card reveal"><div class="num">⌂</div><h3>A home of your own</h3><p>Hang your record catches on the wall, furnish the room, and change how your fisherman looks in the wardrobe.</p></article>
+        <article class="card reveal"><div class="num">♥</div><h3>A pup who's yours</h3><p>On your first trip you hook something that isn't a fish. He becomes your partner and barks when something good is biting.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= screenshots ================= -->
+  <section id="screens" aria-labelledby="shots-title">
+    <div class="wrap">
+      <div class="gallery-head">
+        <div>
+          <p class="kicker">In the game</p>
+          <h2 id="shots-title">Real screens, straight from the phone</h2>
+        </div>
+        <p class="hint">Swipe to see more →</p>
+      </div>
+      <div class="shots" role="list" tabindex="0" aria-label="Game screenshots">
+        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-reel.webp" width="810" height="1440" loading="lazy" alt="The reel minigame: a bar of green, yellow and red zones with an arrow sweeping across it"></div><figcaption>The reel<small>Time your tap to the Green</small></figcaption></figure>
+        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-dog.webp" width="810" height="1440" loading="lazy" alt="A pup dangling from the fishing line by his bandana, with Marlow laughing from the shore"></div><figcaption>Your first catch<small>Not quite what you were after</small></figcaption></figure>
+        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-island.webp" width="810" height="1440" loading="lazy" alt="The home island: Marlow's bar, palm trees, islanders and the pup"></div><figcaption>Your island<small>Chat, wander, and head for the dock</small></figcaption></figure>
+        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-map.webp" width="810" height="1440" loading="lazy" alt="The sea chart: Pebble Pond, Willowbend River and Saltmarsh Estuary, with more islands hazy in the distance"></div><figcaption>The sea chart<small>New islands appear as you earn them</small></figcaption></figure>
+        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-catch.webp" width="810" height="1440" loading="lazy" alt="A caught legendary turtle with its size, value and how it fought"></div><figcaption>Big catches<small>Keep it, or turn it into gold</small></figcaption></figure>
+        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-journal.webp" width="810" height="1440" loading="lazy" alt="The fish journal, a grid of caught fish and silhouettes still to find"></div><figcaption>The journal<small>100 species to complete</small></figcaption></figure>
+        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-bar.webp" width="810" height="1440" loading="lazy" alt="Marlow's bar with the job board, bait jars, rod rack and a list of jobs"></div><figcaption>Marlow's bar<small>Jobs, bait, rods and upgrades</small></figcaption></figure>
+        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-charms.webp" width="810" height="1440" loading="lazy" alt="The charm workshop listing recipes that ask for fish you have sold"></div><figcaption>Charms<small>Crafted from the fish you've sold</small></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= the pup ================= -->
+  <section class="pup" aria-labelledby="pup-title">
+    <div class="wrap">
+      <div class="phone reveal"><img src="img/shot-dog.webp" width="810" height="1440" loading="lazy" alt="Marlow says: Ha! That's no fish, that's a dog! A pup dangles from the fishing line by his bandana above the fisherman"></div>
+      <div class="reveal">
+        <p class="kicker">Meet your partner</p>
+        <h2 id="pup-title">You went fishing. You caught a dog.</h2>
+        <p>On your very first cast, something heavy takes the hook, and it's wearing a red bandana. Marlow laughs, the pup wags, and from then on he trots along beside you on the island and sits by the pier while you fish.</p>
+        <p>He's small, he's loyal, and he knows when a good one is biting.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= buy ================= -->
+  <section id="buy" class="buy" aria-labelledby="buy-title">
+    <div class="wrap">
+      <h2 id="buy-title">Coming soon to iPhone</h2>
+      <div class="price">$3.99</div>
+      <p>Pay once and keep the whole game.</p>
+      <ul>
+        <li>No ads</li>
+        <li>No timers or energy bars</li>
+        <li>Play one-handed, in portrait</li>
+        <li>Pick up and put down any time: it saves after every action</li>
+      </ul>
+      <div><span class="btn" aria-disabled="true">App Store link coming soon</span></div>
+
+      <!-- Newsletter: shown only when SIGNUP_URL (below) is set. -->
+      <p class="signup-label" id="signup-label">Get a note when it launches:</p>
+      <form class="signup" id="signup" method="post" aria-labelledby="signup-label">
+        <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required aria-label="Email address">
+        <button class="btn" type="submit">Notify me</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><strong>Fisherman's Charm</strong><br>A game by Shenna Widianta.</div>
+    <div>Pixel art uses licensed asset packs and PixelLab-generated sprites.<br>Music composed by the developer with help from Gemini.</div>
+  </div>
+</footer>
+
+<script>
+  // Set this to a form endpoint (Formspree, Buttondown, Mailchimp, ...) to show the email sign-up.
+  const SIGNUP_URL = "";
+
+  document.documentElement.classList.add("js");
+  if (SIGNUP_URL) {
+    const form = document.getElementById("signup");
+    form.action = SIGNUP_URL;
+    form.classList.add("on");
+    document.getElementById("signup-label").classList.add("on");
+  }
+  const items = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    items.forEach((el) => io.observe(el));
+  } else {
+    items.forEach((el) => el.classList.add("in"));
+  }
+</script>
+</body>
+</html>
