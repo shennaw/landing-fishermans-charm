@@ -23,4 +23,18 @@ godot --path . --resolution 810x1440 -- --setup=mid --dog --scene=fishing --isla
 ```
 
 (`--scene=map|bar|home|encyclopedia|charms` for the others; the pup shot comes from `tools/ui_test_tutorial.tscn`.)
-`key-art.webp` and `og.jpg` come from `assets/art/key_art.png`; `icon.png` is the app icon.
+
+`hero.webp` (1672 wide) and `hero-960.webp` (for phones) are the hero picture, pixel art of the boy and his
+pup on the pier at sunset, shown full width with a slow parallax drift (off under reduced motion).
+
+`og.jpg` and `icon.png` are built from the game repository (expected next to this one, at `../fisherman-charm`) by:
+
+```bash
+python3 tools/build_images.py            # or: python3 tools/build_images.py path/to/fisherman-charm
+```
+
+- `og.jpg`: the 1200x630 link preview: the pixel key art's sunset sky and sea run the full width, the fisher,
+  the pup and the pier on the right, the game's logo on the left.
+
+`logo.webp` (1200 wide) and `logo-720.webp` are the game's logo (`assets/art/logo.png`), the hero's title.
+- `icon.png`: the app icon (`icon.png`).

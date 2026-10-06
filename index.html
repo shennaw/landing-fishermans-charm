@@ -79,33 +79,55 @@
   .nav ul a:hover { text-decoration: underline; text-underline-offset: 5px; }
   @media (min-width: 760px) { .nav ul { display: flex; } }
 
-  /* ---------- hero ---------- */
+  /* ---------- hero: the painting, full width, drifting slower than the page ---------- */
   .hero {
     position: relative; color: #fff; overflow: hidden;
-    padding: 120px 0 96px;
+    min-height: 100vh; min-height: 100svh;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 96px 0 70px;
+    background: var(--sea-deep);
+    --shift: .22;   /* how far the painting starts pulled up, as a share of the screen: the boy and the pup sit mid-screen */
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+  .hero-bg img {
+    position: absolute; left: 0; top: 0; width: 100%; height: 125%;   /* room to drift */
+    object-fit: cover; object-position: 30% 70%;                      /* keep the boy and the pup in view */
+    will-change: transform;
+  }
+  .hero-bg::after { /* a dark wash under the title and at the foot, so the white text reads */
+    content: ""; position: absolute; inset: 0;
     background:
-      radial-gradient(900px 500px at 85% 10%, rgba(255,201,74,.35), transparent 60%),
-      linear-gradient(180deg, #17607b 0%, var(--sea-deep) 100%);
+      linear-gradient(180deg, rgba(10,42,58,.72) 0%, rgba(10,42,58,.25) 26%, rgba(10,42,58,0) 42%),
+      linear-gradient(0deg, rgba(10,42,58,.92) 0%, rgba(10,42,58,.55) 22%, rgba(10,42,58,0) 42%);
   }
   .hero::after { /* waves along the bottom edge */
-    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 38px;
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 38px; z-index: 2;
     background:
       radial-gradient(circle at 18px 38px, var(--sand) 17px, transparent 18px) 0 0 / 36px 38px repeat-x;
   }
-  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; align-items: center; }
-  .eyebrow { font: 800 14px var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin: 0 0 14px; }
-  .hero h1 { font-size: clamp(44px, 9vw, 84px); text-shadow: 0 4px 0 rgba(0,0,0,.3); }
-  .hero h1 span { color: var(--gold); display: block; }
-  .lede { font-size: clamp(18px, 2.4vw, 22px); max-width: 34ch; margin: 22px 0 32px; color: #e6f6f8; }
-  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
-  .price-note { margin: 18px 0 0; font-size: 15px; color: var(--sea-light); font-weight: 600; }
-  .art { justify-self: center; width: min(70vw, 300px); position: relative; }
-  .art img { border-radius: 26px; border: 5px solid var(--wood); box-shadow: 0 24px 50px rgba(0,0,0,.45), 0 0 0 8px rgba(255,255,255,.08); }
-  @media (min-width: 900px) {
-    .hero { padding: 150px 0 120px; }
-    .hero .wrap { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); }
-    .art { width: 340px; transform: rotate(2.5deg); }
+  .hero .wrap { position: relative; z-index: 1; }
+  .hero-top { text-align: center; }
+  .hero-bottom { text-align: center; padding-bottom: 8px; }
+  @media (min-width: 900px) { /* beside the boy and the pup, over the open sea */
+    .hero { --shift: .04; }
+    .hero-bottom { display: flex; justify-content: flex-end; text-align: left; }
+    .hero-copy { max-width: 470px; }
+    .hero-copy .lede { margin-left: 0; }
+    .hero-copy .cta-row { justify-content: flex-start; }
+    .hero-bg::after {
+      background:
+        linear-gradient(180deg, rgba(10,42,58,.72) 0%, rgba(10,42,58,.25) 26%, rgba(10,42,58,0) 40%),
+        radial-gradient(60% 55% at 85% 88%, rgba(10,42,58,.85) 0%, rgba(10,42,58,.45) 55%, rgba(10,42,58,0) 100%),
+        linear-gradient(0deg, rgba(10,42,58,.6) 0%, rgba(10,42,58,0) 22%);
+    }
   }
+  .eyebrow { font: 800 14px var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin: 0 0 12px; text-shadow: 0 1px 0 rgba(0,0,0,.5); }
+  .hero h1 { margin: 0; }
+  .hero h1 .logo { width: min(80vw, 600px); height: auto; margin: 0 auto; filter: drop-shadow(0 6px 10px rgba(10,42,58,.45)); }
+  .lede { font-size: clamp(18px, 2.4vw, 21px); max-width: 40ch; margin: 0 auto 26px; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.6); }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: center; }
+  .price-note { margin: 16px 0 0; font-size: 15px; color: #d6f1f5; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,.6); }
+  @media (min-width: 900px) { .hero { padding: 110px 0 84px; } }
 
   /* ---------- sections ---------- */
   section { padding: 84px 0; }
@@ -209,21 +231,22 @@
 
   <!-- ================= hero ================= -->
   <section class="hero" aria-labelledby="hero-title">
-    <div class="wrap">
-      <div>
-        <p class="eyebrow">A cozy fishing game for iPhone</p>
-        <h1 id="hero-title">Fisherman's <span>Charm</span></h1>
-        <p class="lede">Pull back your line like a slingshot, tap the Green, and fill a journal of 100 fish across five islands. A rescued pup keeps you company.</p>
-        <div class="cta-row">
-          <a class="btn" href="#buy" aria-disabled="true">Coming soon · $3.99</a>
-          <a class="btn ghost" href="#how">See how it plays</a>
-        </div>
-        <p class="price-note">One price. No ads. Made for one-handed play.</p>
-      </div>
-      <div class="art">
-        <img src="img/key-art.webp" width="941" height="1672" alt="Key art: a fisherman and his corgi on a wooden pier at sunrise, a bobber floating on the bright water and fish swimming below" fetchpriority="high">
-      </div>
+    <div class="hero-bg">
+      <img src="img/hero.webp" srcset="img/hero-960.webp 960w, img/hero.webp 1672w" sizes="100vw" width="1672" height="941"
+        alt="Pixel art of a boy and his pup with a red scarf, fishing from a wooden pier at sunset, a red and white bobber on the sea, a village on the cliffs and a lighthouse in the distance" fetchpriority="high">
     </div>
+    <div class="wrap hero-top">
+      <p class="eyebrow">A cozy fishing game for iPhone</p>
+      <h1 id="hero-title"><img class="logo" src="img/logo.webp" srcset="img/logo-720.webp 720w, img/logo.webp 1200w" sizes="(min-width: 900px) 600px, 80vw" width="1200" height="432" alt="Fisherman's Charm"></h1>
+    </div>
+    <div class="wrap hero-bottom"><div class="hero-copy">
+      <p class="lede">Pull back your line like a slingshot, tap the Green, and fill a journal of 100 fish across five islands. A rescued pup keeps you company.</p>
+      <div class="cta-row">
+        <a class="btn" href="#buy" aria-disabled="true">Coming soon · $3.99</a>
+        <a class="btn ghost" href="#how">See how it plays</a>
+      </div>
+      <p class="price-note">One price. No ads. Made for one-handed play.</p>
+    </div></div>
   </section>
 
   <!-- ================= how it plays ================= -->
@@ -344,6 +367,20 @@
     form.classList.add("on");
     document.getElementById("signup-label").classList.add("on");
   }
+  // The hero painting drifts at a third of the scroll speed (not with reduced motion).
+  const heroImg = document.querySelector(".hero-bg img");
+  if (heroImg && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    let ticking = false;
+    const drift = () => {
+      const y = Math.min(window.scrollY, window.innerHeight * 1.2);
+      const shift = parseFloat(getComputedStyle(heroImg.closest(".hero")).getPropertyValue("--shift")) || 0;
+      heroImg.style.transform = `translate3d(0, ${(y * 0.33 - window.innerHeight * shift).toFixed(1)}px, 0)`;
+      ticking = false;
+    };
+    window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(drift); } }, { passive: true });
+    drift();
+  }
+
   const items = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver((entries) => {
