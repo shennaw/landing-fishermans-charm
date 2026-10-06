@@ -10,7 +10,7 @@ A static, dependency-free page for Fisherman's Charm: `index.html` (inline CSS a
 - **Email sign-up:** set `SIGNUP_URL` at the bottom of `index.html` to a form endpoint (Formspree, Buttondown,
   Mailchimp...). While it is empty the sign-up form stays hidden.
 - **Link previews:** make `og:image` an absolute URL (`https://your-domain/img/og.jpg`).
-- **Claims:** the page says *$3.99*, *no ads* and *no timers*. Change them if the plan changes.
+- **Claims:** the page says *no ads* and *no timers*, and shows no price yet. Change them if the plan changes.
 - **Hosting:** any static host works (GitHub Pages from the repository root, Netlify, Cloudflare Pages). The page only carries screenshots and the key art, never the licensed art packs from the game repository.
 
 ## The images

@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fisherman's Charm: a cozy fishing game for iPhone</title>
-<meta name="description" content="Cast with a slingshot, time your reel, and fill a 100-fish journal across five islands, with a rescued pup at your side. A cozy pixel-art fishing game for iPhone, $3.99, no ads.">
+<title>Fisherman's Charm: your pocket-sized seaside escape</title>
+<meta name="description" content="Your pocket-sized seaside escape. Cast a line, catch something wonderful and watch the sun go down with your best friend at your side. A cosy pixel-art fishing game for iPhone, with no ads.">
 <meta name="theme-color" content="#0f3d52">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Fisherman's Charm">
-<meta property="og:description" content="A cozy pixel-art fishing game for iPhone. Slingshot casts, a timing reel, 100 fish to collect, and a rescued pup for company. $3.99, no ads.">
+<meta property="og:description" content="Your pocket-sized seaside escape. Cast a line, meet a scruffy pup and fish your way across five sunny islands. Coming soon to iPhone.">
 <!-- Once the site is hosted, make this an absolute URL (https://your-domain/img/og.jpg) so link previews work. -->
 <meta property="og:image" content="img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -121,7 +121,6 @@
         linear-gradient(0deg, rgba(10,42,58,.6) 0%, rgba(10,42,58,0) 22%);
     }
   }
-  .eyebrow { font: 800 14px var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin: 0 0 12px; text-shadow: 0 1px 0 rgba(0,0,0,.5); }
   .hero h1 { margin: 0; }
   .hero h1 .logo { width: min(80vw, 600px); height: auto; margin: 0 auto; filter: drop-shadow(0 6px 10px rgba(10,42,58,.45)); }
   .lede { font-size: clamp(18px, 2.4vw, 21px); max-width: 40ch; margin: 0 auto 26px; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.6); }
@@ -135,21 +134,16 @@
   h2 { font-size: clamp(32px, 5vw, 48px); }
   .sub { color: var(--ink-soft); max-width: 52ch; margin: 14px 0 0; }
 
-  /* how it plays */
-  .steps { display: grid; gap: 22px; margin-top: 44px; counter-reset: step; }
-  .step {
+  /* why you'll love it */
+  .perks { display: grid; gap: 22px; margin-top: 44px; }
+  .perk {
     background: #fff; border: 3px solid var(--wood); border-radius: var(--radius);
-    padding: 22px 22px 26px; box-shadow: 0 6px 0 var(--sand-dark); position: relative;
+    padding: 24px 22px 26px; box-shadow: 0 6px 0 var(--sand-dark);
   }
-  .step::before {
-    counter-increment: step; content: counter(step);
-    position: absolute; top: -18px; left: 20px; width: 40px; height: 40px; border-radius: 50%;
-    display: grid; place-items: center; font: 700 22px var(--font-pixel);
-    background: var(--gold); border: 3px solid var(--wood);
-  }
-  .step h3 { font-size: 26px; margin: 8px 0 8px; }
-  .step p { margin: 0; color: var(--ink-soft); font-size: 17px; }
-  @media (min-width: 800px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+  .perk .glyph { font: 700 34px/1 var(--font-pixel); color: var(--gold-deep); }
+  .perk h3 { font-size: 26px; margin: 12px 0 8px; }
+  .perk p { margin: 0; color: var(--ink-soft); font-size: 17px; }
+  @media (min-width: 800px) { .perks { grid-template-columns: repeat(3, 1fr); } }
 
   /* features */
   .features { background: var(--sea-deep); color: #fff; position: relative; }
@@ -191,7 +185,7 @@
   .buy { background: linear-gradient(180deg, #17607b 0%, var(--sea-deep) 100%); color: #fff; text-align: center; }
   .buy .wrap { max-width: 720px; }
   .buy h2 { color: var(--gold); }
-  .price { font: 700 clamp(56px, 12vw, 96px)/1 var(--font-pixel); margin: 22px 0 6px; text-shadow: 0 4px 0 rgba(0,0,0,.3); }
+  .buy .soon { margin: 18px 0 0; font-size: 19px; color: #e6f6f8; }
   .buy ul { list-style: none; padding: 0; margin: 20px auto 34px; display: inline-grid; gap: 8px; text-align: left; font-weight: 700; }
   .buy li::before { content: "✓"; color: var(--gold); font-weight: 800; margin-right: 10px; }
   form.signup { margin: 36px auto 0; display: none; gap: 10px; max-width: 460px; }
@@ -219,8 +213,8 @@
   <div class="wrap">
     <a class="brand" href="#top">Fisherman's Charm</a>
     <ul>
-      <li><a href="#how">How it plays</a></li>
-      <li><a href="#features">Features</a></li>
+      <li><a href="#love">Why you'll love it</a></li>
+      <li><a href="#world">The islands</a></li>
       <li><a href="#screens">Screenshots</a></li>
       <li><a href="#buy">Get the game</a></li>
     </ul>
@@ -236,55 +230,54 @@
         alt="Pixel art of a boy and his pup with a red scarf, fishing from a wooden pier at sunset, a red and white bobber on the sea, a village on the cliffs and a lighthouse in the distance" fetchpriority="high">
     </div>
     <div class="wrap hero-top">
-      <p class="eyebrow">A cozy fishing game for iPhone</p>
       <h1 id="hero-title"><img class="logo" src="img/logo.webp" srcset="img/logo-720.webp 720w, img/logo.webp 1200w" sizes="(min-width: 900px) 600px, 80vw" width="1200" height="432" alt="Fisherman's Charm"></h1>
     </div>
     <div class="wrap hero-bottom"><div class="hero-copy">
-      <p class="lede">Pull back your line like a slingshot, tap the Green, and fill a journal of 100 fish across five islands. A rescued pup keeps you company.</p>
+      <p class="lede">Your pocket-sized seaside escape. Cast a line, catch something wonderful, and watch the sun go down with your best friend at your side.</p>
       <div class="cta-row">
-        <a class="btn" href="#buy" aria-disabled="true">Coming soon · $3.99</a>
-        <a class="btn ghost" href="#how">See how it plays</a>
+        <a class="btn" href="#buy" aria-disabled="true">Coming soon</a>
+        <a class="btn ghost" href="#screens">Take a look</a>
       </div>
-      <p class="price-note">One price. No ads. Made for one-handed play.</p>
+      <p class="price-note">Coming soon to iPhone. No ads, no timers, just you and the water.</p>
     </div></div>
   </section>
 
-  <!-- ================= how it plays ================= -->
-  <section id="how" aria-labelledby="how-title">
+  <!-- ================= why you'll love it ================= -->
+  <section id="love" aria-labelledby="love-title">
     <div class="wrap">
-      <p class="kicker">How it plays</p>
-      <h2 id="how-title">Three taps from calm to catch</h2>
-      <p class="sub">A relaxed loop you can pick up in a minute and play in the time it takes the kettle to boil.</p>
-      <div class="steps">
-        <article class="step reveal">
-          <h3>Cast</h3>
-          <p>Press on your fisherman, pull back like a slingshot, and let go. Aim for the ripples: bigger rings mean bigger fish.</p>
+      <p class="kicker">Why you'll love it</p>
+      <h2 id="love-title">The calmest five minutes of your day</h2>
+      <p class="sub">Some games want all of your attention. This one just wants you to breathe out.</p>
+      <div class="perks">
+        <article class="perk reveal">
+          <div class="glyph" aria-hidden="true">&#9790;</div>
+          <h3>Unwind in seconds</h3>
+          <p>On the bus, in a queue or tucked up in bed: flick out a cast, tap in rhythm, and feel your shoulders drop.</p>
         </article>
-        <article class="step reveal">
-          <h3>Reel</h3>
-          <p>Tap when the arrow sits in the Green. Yellow is fine, Red hurts. Every fish fights in its own way, from calm to darting to downright sneaky.</p>
+        <article class="perk reveal">
+          <div class="glyph" aria-hidden="true">?</div>
+          <h3>Every bite is a surprise</h3>
+          <p>A minnow? A golden koi? Something nobody has seen in years? You only find out when it breaks the surface.</p>
         </article>
-        <article class="step reveal">
-          <h3>Collect</h3>
-          <p>Keep your best catches, sell the rest to Old Marlow, and craft permanent charms from the fish you've sold.</p>
+        <article class="perk reveal">
+          <div class="glyph" aria-hidden="true">&hearts;</div>
+          <h3>Make it yours</h3>
+          <p>Fill a journal with every fish you meet, hang your proudest catches at home, and dress your fisher just the way you like.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ================= features ================= -->
-  <section id="features" class="features" aria-labelledby="feat-title">
+  <!-- ================= the world ================= -->
+  <section id="world" class="features" aria-labelledby="world-title">
     <div class="wrap">
-      <p class="kicker">What's in the boat</p>
-      <h2 id="feat-title">A whole world to fish through</h2>
-      <p class="sub">Five islands, a bar full of jobs, and a stubborn old mentor who misses the water.</p>
+      <p class="kicker">A whole little world</p>
+      <h2 id="world-title">Five islands. One big catch.</h2>
+      <p class="sub">From a sleepy pond to the deep blue sea, every island has its own fish, its own neighbours, and something enormous waiting offshore.</p>
       <div class="grid">
-        <article class="card reveal"><div class="num">100</div><h3>Fish to find</h3><p>Fill your journal one silhouette at a time. Every species has its own size record, and some of them are legendary.</p></article>
-        <article class="card reveal"><div class="num">5</div><h3>Islands to sail</h3><p>From Pebble Pond to the deep reef. Finish Marlow's jobs, earn medals, and unlock the next boat. Watch out for the giants out at sea.</p></article>
-        <article class="card reveal"><div class="num">✦</div><h3>Charms you craft</h3><p>Sell the right fish and Marlow makes you a permanent charm: calmer fish, wider Green zones, even a second wind when the line goes slack.</p></article>
-        <article class="card reveal"><div class="num">☀</div><h3>Time and weather</h3><p>Pick the hour and watch the sky. Mornings bite more often; dusk and night hide the rare ones.</p></article>
-        <article class="card reveal"><div class="num">⌂</div><h3>A home of your own</h3><p>Hang your record catches on the wall, furnish the room, and change how your fisherman looks in the wardrobe.</p></article>
-        <article class="card reveal"><div class="num">♥</div><h3>A pup who's yours</h3><p>On your first trip you hook something that isn't a fish. He becomes your partner and barks when something good is biting.</p></article>
+        <article class="card reveal"><div class="num">&#9788;</div><h3>Sunrise to starlight</h3><p>Fish at dawn, under a rainy sky or by lantern light. Each hour and every kind of weather brings different fish to the surface.</p></article>
+        <article class="card reveal"><div class="num">&#9875;</div><h3>Giants of the deep</h3><p>Sail somewhere new and something huge rises to meet you. Hold your nerve, and your dog will help you land it.</p></article>
+        <article class="card reveal"><div class="num">&#8962;</div><h3>Neighbours who need you</h3><p>The islanders keep losing things in the water. Fish them out, earn their thanks, and fill your cottage with the gifts.</p></article>
       </div>
     </div>
   </section>
@@ -294,20 +287,20 @@
     <div class="wrap">
       <div class="gallery-head">
         <div>
-          <p class="kicker">In the game</p>
-          <h2 id="shots-title">Real screens, straight from the phone</h2>
+          <p class="kicker">Take a look</p>
+          <h2 id="shots-title">Life by the water</h2>
         </div>
-        <p class="hint">Swipe to see more →</p>
+        <p class="hint">Swipe for more →</p>
       </div>
       <div class="shots" role="list" tabindex="0" aria-label="Game screenshots">
-        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-reel.webp" width="810" height="1440" loading="lazy" alt="The reel minigame: a bar of green, yellow and red zones with an arrow sweeping across it"></div><figcaption>The reel<small>Time your tap to the Green</small></figcaption></figure>
-        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-dog.webp" width="810" height="1440" loading="lazy" alt="A pup dangling from the fishing line by his bandana, with Marlow laughing from the shore"></div><figcaption>Your first catch<small>Not quite what you were after</small></figcaption></figure>
-        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-island.webp" width="810" height="1440" loading="lazy" alt="The home island: Marlow's bar, palm trees, islanders and the pup"></div><figcaption>Your island<small>Chat, wander, and head for the dock</small></figcaption></figure>
-        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-map.webp" width="810" height="1440" loading="lazy" alt="The sea chart: Pebble Pond, Willowbend River and Saltmarsh Estuary, with more islands hazy in the distance"></div><figcaption>The sea chart<small>New islands appear as you earn them</small></figcaption></figure>
-        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-catch.webp" width="810" height="1440" loading="lazy" alt="A caught legendary turtle with its size, value and how it fought"></div><figcaption>Big catches<small>Keep it, or turn it into gold</small></figcaption></figure>
-        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-journal.webp" width="810" height="1440" loading="lazy" alt="The fish journal, a grid of caught fish and silhouettes still to find"></div><figcaption>The journal<small>100 species to complete</small></figcaption></figure>
-        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-bar.webp" width="810" height="1440" loading="lazy" alt="Marlow's bar with the job board, bait jars, rod rack and a list of jobs"></div><figcaption>Marlow's bar<small>Jobs, bait, rods and upgrades</small></figcaption></figure>
-        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-charms.webp" width="810" height="1440" loading="lazy" alt="The charm workshop listing recipes that ask for fish you have sold"></div><figcaption>Charms<small>Crafted from the fish you've sold</small></figcaption></figure>
+        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-reel.webp" width="810" height="1440" loading="lazy" alt="The reel: a bar of green, yellow and red zones with an arrow sweeping across it"></div><figcaption>Feel the tug<small>Tap in rhythm to reel it in</small></figcaption></figure>
+        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-dog.webp" width="810" height="1440" loading="lazy" alt="A pup dangling from the fishing line by his bandana, with an old fisherman laughing from the shore"></div><figcaption>Your first catch<small>Not quite what you were after</small></figcaption></figure>
+        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-island.webp" width="810" height="1440" loading="lazy" alt="The home island: a bar, palm trees, neighbours and the pup"></div><figcaption>Home sweet island<small>Say hello to the neighbours</small></figcaption></figure>
+        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-map.webp" width="810" height="1440" loading="lazy" alt="A sea chart with islands appearing out of the haze"></div><figcaption>Set sail<small>New shores to discover</small></figcaption></figure>
+        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-catch.webp" width="810" height="1440" loading="lazy" alt="A legendary turtle just caught, with its size and value"></div><figcaption>The one that didn't get away<small>Some catches you'll never forget</small></figcaption></figure>
+        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-journal.webp" width="810" height="1440" loading="lazy" alt="The fish journal, a grid of caught fish and silhouettes still to find"></div><figcaption>Fill your journal<small>How many can you find?</small></figcaption></figure>
+        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-bar.webp" width="810" height="1440" loading="lazy" alt="Marlow's bar with the job board, bait jars, rod rack and a model boat"></div><figcaption>Old Marlow's bar<small>Jobs, gear and a good yarn</small></figcaption></figure>
+        <figure class="shot" role="listitem"><div class="phone"><img src="img/shot-charms.webp" width="810" height="1440" loading="lazy" alt="A list of charms, each crafted from fish you have sold"></div><figcaption>Lucky charms<small>A little magic for every angler</small></figcaption></figure>
       </div>
     </div>
   </section>
@@ -315,12 +308,12 @@
   <!-- ================= the pup ================= -->
   <section class="pup" aria-labelledby="pup-title">
     <div class="wrap">
-      <div class="phone reveal"><img src="img/shot-dog.webp" width="810" height="1440" loading="lazy" alt="Marlow says: Ha! That's no fish, that's a dog! A pup dangles from the fishing line by his bandana above the fisherman"></div>
+      <div class="phone reveal"><img src="img/shot-dog.webp" width="810" height="1440" loading="lazy" alt="An old fisherman says: Ha! That's no fish, that's a dog! A pup dangles from the line by his bandana"></div>
       <div class="reveal">
-        <p class="kicker">Meet your partner</p>
+        <p class="kicker">Meet your best friend</p>
         <h2 id="pup-title">You went fishing. You caught a dog.</h2>
-        <p>On your very first cast, something heavy takes the hook, and it's wearing a red bandana. Marlow laughs, the pup wags, and from then on he trots along beside you on the island and sits by the pier while you fish.</p>
-        <p>He's small, he's loyal, and he knows when a good one is biting.</p>
+        <p>Your very first cast hooks something heavy, and it's wearing a red bandana. From that day on he's yours: trotting beside you round the island, sitting by the pier while you wait for a bite, and wagging like mad when something good comes up.</p>
+        <p>Every angler needs a first mate. Yours just happens to have four paws.</p>
       </div>
     </div>
   </section>
@@ -328,19 +321,18 @@
   <!-- ================= buy ================= -->
   <section id="buy" class="buy" aria-labelledby="buy-title">
     <div class="wrap">
-      <h2 id="buy-title">Coming soon to iPhone</h2>
-      <div class="price">$3.99</div>
-      <p>Pay once and keep the whole game.</p>
+      <h2 id="buy-title">The water's calm. Your pup's waiting.</h2>
+      <p class="soon">Coming soon to iPhone.</p>
       <ul>
-        <li>No ads</li>
-        <li>No timers or energy bars</li>
-        <li>Play one-handed, in portrait</li>
-        <li>Pick up and put down any time: it saves after every action</li>
+        <li>No ads, ever</li>
+        <li>No energy bars or waiting timers</li>
+        <li>Plays one-handed, in portrait</li>
+        <li>Put it down any time: it remembers everything</li>
       </ul>
-      <div><span class="btn" aria-disabled="true">App Store link coming soon</span></div>
+      <div><span class="btn" aria-disabled="true">Coming soon to the App Store</span></div>
 
       <!-- Newsletter: shown only when SIGNUP_URL (below) is set. -->
-      <p class="signup-label" id="signup-label">Get a note when it launches:</p>
+      <p class="signup-label" id="signup-label">Be the first to know when it lands:</p>
       <form class="signup" id="signup" method="post" aria-labelledby="signup-label">
         <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required aria-label="Email address">
         <button class="btn" type="submit">Notify me</button>
@@ -351,8 +343,8 @@
 
 <footer>
   <div class="wrap">
-    <div><strong>Fisherman's Charm</strong><br>A game by Shenna Widianta.</div>
-    <div>Pixel art uses licensed asset packs and PixelLab-generated sprites.<br>Music composed by the developer with help from Gemini.</div>
+    <div><strong>Fisherman's Charm</strong><br>A cosy little fishing adventure.</div>
+    <div>Made with love by Shenna Widianta.<br>&copy; 2026 Shenna Widianta</div>
   </div>
 </footer>
 
