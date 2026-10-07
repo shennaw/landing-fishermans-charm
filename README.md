@@ -15,14 +15,18 @@ A static, dependency-free page for Fisherman's Charm: `index.html` (inline CSS a
 
 ## The images
 
-`img/shot-*.webp` are real in-game screenshots at 810x1440, captured with the debug flags:
+`img/shot-*.webp` are real in-game screenshots: the game's 405x720 window doubled to 810x1440 with
+nearest-neighbour scaling, saved as lossless WebP (the sea chart, all parchment texture, as lossy). They
+come from a staged save well into the game (the game's `Debug._setup("rich")` plus the dog named Biscuit,
+every giant beaten, charms worn and an aquarium at home), captured scene by scene with the game's
+screenshot helper (`tools/art_shots.gd`'s `_visit`):
 
-```bash
-godot --path . --resolution 810x1440 -- --setup=mid --dog --scene=island --spawn=bar --shot=island.png --frames=100
-godot --path . --resolution 810x1440 -- --setup=mid --dog --scene=fishing --island=0 --autoreel --frames=104 --shot=reel.png
-```
-
-(`--scene=map|bar|home|encyclopedia|charms` for the others; the pup shot comes from `tools/ui_test_tutorial.tscn`.)
+- `shot-reel`: a reel at Coral Lagoon, the fish Darting and Heavy, in its driftwood frame
+- `shot-dog`: the tutorial, Marlow spotting the fisherman's charm on the pup's bandana (`tools/ui_test_tutorial.tscn`, two lines on)
+- `shot-island`: walking up to Pip on the home island, "Talk to Pip" showing, the pup alongside
+- `shot-prep`: Prepare at Coral Lagoon, rain at dusk, with the recommendations
+- `shot-map`, `shot-journal`, `shot-charms`, `shot-home`, `shot-bar`: those screens on the same save
+- `shot-catch`: a legendary Blue Lobster landed at Abyssal Reef at night
 
 `hero.webp` (1672 wide) and `hero-960.webp` (for phones) are the hero picture, pixel art of the boy and his
 pup on the pier at sunset, shown full width with a slow parallax drift (off under reduced motion).
