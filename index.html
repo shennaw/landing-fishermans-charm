@@ -173,14 +173,51 @@
   .signup-label { display: none; margin: 34px 0 0; color: var(--sea-light); font-weight: 700; }
   .signup-label.on { display: block; }
 
+  /* support */
+  .support { background: #fdf3e0; text-align: center; }
+  .support .wrap { max-width: 640px; }
+  .support h2 { color: var(--wood); }
+  .support p { color: var(--ink-soft); margin: 14px auto 0; max-width: 46ch; }
+  .support .btn { margin-top: 26px; }
+  .support .mail { margin-top: 14px; font-weight: 800; }
+  .support .mail a { color: var(--wood); text-underline-offset: 4px; }
+
   footer { background: #0a2a3a; color: #9cc6d0; padding: 40px 0; font-size: 15px; }
   footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 30px; }
   footer strong { color: #fff; font-family: var(--font-pixel); font-size: 18px; }
 
-  /* reveal on scroll (only when JS runs and motion is allowed) */
-  .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  /* motion: everything slides in from the side it belongs to, one piece after another.
+     The text column comes from its own edge, the phones from the opposite one, each child delayed
+     a beat after the last. Only when JS runs and motion is allowed. */
+  .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
   .js .reveal.in { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
+  .js .copy.reveal { opacity: 1; transform: none; }   /* the column itself stays put: its children move */
+  .js .copy.reveal > * { opacity: 0; transform: translate(var(--sx, 0), 22px); transition: opacity .6s ease, transform .75s cubic-bezier(.2,.7,.2,1); transition-delay: calc(var(--i, 0) * 110ms); }
+  .js .copy.reveal.in > * { opacity: 1; transform: none; }
+  .copy > :nth-child(1) { --i: 0; } .copy > :nth-child(2) { --i: 1; } .copy > :nth-child(3) { --i: 2; } .copy > :nth-child(4) { --i: 3; }
+  .js .phones > .reveal { transform: translate(var(--px, 0), 30px) scale(.94); transition-delay: calc(.15s + var(--p, 0) * 180ms); }
+  .js .phones > .reveal.in { transform: none; }
+  .phones > :nth-child(2) { --p: 1; }
+  @media (min-width: 860px) {
+    .point .copy { --sx: -56px; }
+    .point .phones { --px: 70px; }
+    .point.alt .copy { --sx: 56px; }
+    .point.alt .phones { --px: -70px; }
+  }
+
+  /* the hero builds itself on load: logo drops in, then the line, the buttons and the note */
+  @keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+  @keyframes drop { from { opacity: 0; transform: translateY(-34px) scale(.96); } to { opacity: 1; transform: none; } }
+  .js .hero h1 .logo { animation: drop .9s cubic-bezier(.2,.8,.2,1) .1s both; }
+  .js .hero-copy > * { animation: rise .8s cubic-bezier(.2,.8,.2,1) both; }
+  .js .hero-copy > :nth-child(1) { animation-delay: .5s; }
+  .js .hero-copy > :nth-child(2) { animation-delay: .65s; }
+  .js .hero-copy > :nth-child(3) { animation-delay: .8s; }
+  .js .nav { animation: rise .7s ease .2s both; }
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal, .js .copy.reveal > *, .js .phones > .reveal { opacity: 1; transform: none; transition: none; }
+    .js .hero h1 .logo, .js .hero-copy > *, .js .nav { animation: none; }
+  }
 </style>
 </head>
 <body>
@@ -195,6 +232,7 @@
       <li><a href="#fashion">Fashion</a></li>
       <li><a href="#home">Home</a></li>
       <li><a href="#buy">Get the game</a></li>
+      <li><a href="#support">Support</a></li>
     </ul>
   </div>
 </header>
@@ -296,12 +334,22 @@
       </form>
     </div>
   </section>
+
+  <!-- ================= support ================= -->
+  <section id="support" class="support" aria-labelledby="support-title">
+    <div class="wrap">
+      <h2 id="support-title">Need a hand?</h2>
+      <p>Found a bug, stuck on a giant, or just want to say hello? Write to me and I'll get back to you as soon as I can.</p>
+      <a class="btn" href="mailto:shenna.widianta@gmail.com?subject=Fisherman%27s%20Charm%20support">Email support</a>
+      <p class="mail"><a href="mailto:shenna.widianta@gmail.com">shenna.widianta@gmail.com</a></p>
+    </div>
+  </section>
 </main>
 
 <footer>
   <div class="wrap">
     <div><strong>Fisherman's Charm</strong><br>A cosy little fishing adventure.</div>
-    <div>Made with love by Shenna Widianta.<br>&copy; 2026 Shenna Widianta</div>
+    <div>Made with love by Shenna Widianta.<br>&copy; 2026 Shenna Widianta<br><a href="#support" style="color:inherit">Support</a></div>
   </div>
 </footer>
 
