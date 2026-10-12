@@ -6,12 +6,37 @@
 <title>Fisherman's Charm</title>
 <meta name="description" content="Your pocket-sized seaside escape. Collect 100 kinds of fish, fight legendary creatures with your pup beside you, and make your fisher and your home your own. A cosy pixel-art fishing game for iPhone, with no ads.">
 <meta name="theme-color" content="#0f3d52">
+<link rel="canonical" href="https://fishermanscharm.com/">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://fishermanscharm.com/">
+<meta property="og:site_name" content="Fisherman's Charm">
 <meta property="og:title" content="Fisherman's Charm">
 <meta property="og:description" content="Your pocket-sized seaside escape. Collect 100 kinds of fish, fight legendary creatures, go fishing with your best friend, dress your fisher and decorate your house. Coming soon to iPhone.">
-<!-- Once the site is hosted, make this an absolute URL (https://your-domain/img/og.jpg) so link previews work. -->
-<meta property="og:image" content="img/og.jpg">
+<meta property="og:image" content="https://fishermanscharm.com/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fisherman's Charm: a fisher and a pup on a pier at sunset">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fisherman's Charm">
+<meta name="twitter:description" content="A cosy pixel-art fishing game for iPhone: collect 100 kinds of fish, fight legendary creatures and go fishing with your best friend.">
+<meta name="twitter:image" content="https://fishermanscharm.com/img/og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Fisherman's Charm",
+  "url": "https://fishermanscharm.com/",
+  "description": "A cosy pixel-art fishing adventure for iPhone. Collect 100 kinds of fish, fight legendary creatures, go fishing with your best friend, dress your fisher and decorate your house.",
+  "image": "https://fishermanscharm.com/img/og.jpg",
+  "genre": ["Adventure", "Simulation", "Casual"],
+  "gamePlatform": "iOS",
+  "operatingSystem": "iOS",
+  "applicationCategory": "Game",
+  "inLanguage": ["en", "ja", "es", "fr", "id"],
+  "author": { "@type": "Person", "name": "Shenna Widianta" },
+  "publisher": { "@type": "Person", "name": "Shenna Widianta" }
+}
+</script>
 <link rel="icon" href="img/icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -219,6 +244,9 @@
     .js .hero h1 .logo, .js .hero-copy > *, .js .nav { animation: none; }
   }
 </style>
+<!-- GoatCounter: cookie-free visit counting -->
+<script data-goatcounter="https://shennafisherman.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
@@ -340,8 +368,8 @@
     <div class="wrap">
       <h2 id="support-title">Need a hand?</h2>
       <p>Found a bug, stuck on a giant, or just want to say hello? Write to me and I'll get back to you as soon as I can.</p>
-      <a class="btn" href="mailto:shenna.widianta@gmail.com?subject=Fisherman%27s%20Charm%20support">Email support</a>
-      <p class="mail"><a href="mailto:shenna.widianta@gmail.com">shenna.widianta@gmail.com</a></p>
+      <a class="btn" data-goat="click-email-support" href="mailto:shenna.widianta@gmail.com?subject=Fisherman%27s%20Charm%20support">Email support</a>
+      <p class="mail"><a data-goat="click-email-address" href="mailto:shenna.widianta@gmail.com">shenna.widianta@gmail.com</a></p>
     </div>
   </section>
 </main>
@@ -356,6 +384,14 @@
 <script>
   // Set this to a form endpoint (Formspree, Buttondown, Mailchimp, ...) to show the email sign-up.
   const SIGNUP_URL = "";
+
+  // Buttons marked data-goat are counted as events in GoatCounter (the support email, later the App Store button).
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest("[data-goat]");
+    if (el && window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: el.dataset.goat, title: el.textContent.trim(), event: true });
+    }
+  });
 
   document.documentElement.classList.add("js");
   if (SIGNUP_URL) {
