@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://fishermanscharm.com/">
 <meta property="og:site_name" content="Fisherman's Charm">
 <meta property="og:title" content="Fisherman's Charm">
-<meta property="og:description" content="Your pocket-sized seaside escape. Collect 100 kinds of fish, fight legendary creatures, go fishing with your best friend, dress your fisher and decorate your house. Coming soon to iPhone.">
+<meta property="og:description" content="Your pocket-sized seaside escape. Collect 100 kinds of fish, fight legendary creatures, go fishing with your best friend, dress your fisher and decorate your house. Out now on iPhone.">
 <meta property="og:image" content="https://fishermanscharm.com/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -26,6 +26,8 @@
   "@type": "VideoGame",
   "name": "Fisherman's Charm",
   "url": "https://fishermanscharm.com/",
+  "installUrl": "https://apps.apple.com/us/app/fishermans-charm/id6815563793",
+  "sameAs": ["https://apps.apple.com/us/app/fishermans-charm/id6815563793"],
   "description": "A cosy pixel-art fishing adventure for iPhone. Collect 100 kinds of fish, fight legendary creatures, go fishing with your best friend, dress your fisher and decorate your house.",
   "image": "https://fishermanscharm.com/img/og.jpg",
   "genre": ["Adventure", "Simulation", "Casual"],
@@ -94,6 +96,25 @@
   .btn.ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.7); box-shadow: none; }
   .btn.ghost:hover { background: rgba(255,255,255,.14); transform: none; }
   .btn[aria-disabled="true"] { cursor: default; }
+
+  /* the "Download on the App Store" badge: black, thin grey rim, Apple logo and two lines of text */
+  .store-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    height: 56px; padding: 0 22px 0 16px;
+    background: #000; color: #fff; border: 1px solid #a6a6a6; border-radius: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    text-decoration: none; text-align: left;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .store-badge:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(0,0,0,.3); }
+  .store-badge svg { width: 30px; height: 30px; fill: currentColor; flex: none; margin-top: -3px; }
+  .store-badge span { display: flex; flex-direction: column; line-height: 1; }
+  .store-badge small { font-size: 12px; font-weight: 500; letter-spacing: .01em; }
+  .store-badge strong { font-size: 25px; font-weight: 600; letter-spacing: -.02em; margin-top: 2px; }
+  .store-badge.lg { height: 66px; padding: 0 28px 0 20px; border-radius: 15px; }
+  .store-badge.lg svg { width: 36px; height: 36px; }
+  .store-badge.lg small { font-size: 14px; }
+  .store-badge.lg strong { font-size: 30px; }
 
   /* ---------- nav ---------- */
   .nav { position: absolute; inset: 0 0 auto 0; z-index: 5; }
@@ -279,10 +300,10 @@
     <div class="wrap hero-bottom"><div class="hero-copy">
       <p class="lede">Your pocket-sized seaside escape. Collect 100 kinds of fish, fight legendary creatures with your pup beside you, and make your fisher and your home your own.</p>
       <div class="cta-row">
-        <a class="btn" href="#buy" aria-disabled="true">Coming soon</a>
+        <a class="store-badge" data-goat="click-app-store-hero" href="https://apps.apple.com/us/app/fishermans-charm/id6815563793" aria-label="Download on the App Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><span><small>Download on the</small><strong>App Store</strong></span></a>
         <a class="btn ghost" href="#collect">Take a look</a>
       </div>
-      <p class="price-note">Coming soon to iPhone. No ads, no timers, just you and the water.</p>
+      <p class="price-note">Out now on iPhone. No ads, no timers, just you and the water.</p>
     </div></div>
   </section>
 
@@ -345,17 +366,17 @@
   <section id="buy" class="buy" aria-labelledby="buy-title">
     <div class="wrap">
       <h2 id="buy-title">The water's calm. Your pup's waiting.</h2>
-      <p class="soon">Coming soon to iPhone.</p>
+      <p class="soon">Out now on iPhone.</p>
       <ul>
         <li>No ads, ever</li>
         <li>No energy bars or waiting timers</li>
         <li>Plays one-handed, in portrait, at your own pace</li>
         <li>Put it down any time: it remembers everything</li>
       </ul>
-      <div><span class="btn" aria-disabled="true">Coming soon to the App Store</span></div>
+      <div><a class="store-badge lg" data-goat="click-app-store-buy" href="https://apps.apple.com/us/app/fishermans-charm/id6815563793" aria-label="Download on the App Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><span><small>Download on the</small><strong>App Store</strong></span></a></div>
 
       <!-- Newsletter: shown only when SIGNUP_URL (below) is set. -->
-      <p class="signup-label" id="signup-label">Be the first to know when it lands:</p>
+      <p class="signup-label" id="signup-label">Hear about updates and new islands:</p>
       <form class="signup" id="signup" method="post" aria-labelledby="signup-label">
         <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required aria-label="Email address">
         <button class="btn" type="submit">Notify me</button>
@@ -385,11 +406,11 @@
   // Set this to a form endpoint (Formspree, Buttondown, Mailchimp, ...) to show the email sign-up.
   const SIGNUP_URL = "";
 
-  // Buttons marked data-goat are counted as events in GoatCounter (the support email, later the App Store button).
+  // Buttons marked data-goat are counted as events in GoatCounter (the support email and the App Store badges).
   document.addEventListener("click", (e) => {
     const el = e.target.closest("[data-goat]");
     if (el && window.goatcounter && window.goatcounter.count) {
-      window.goatcounter.count({ path: el.dataset.goat, title: el.textContent.trim(), event: true });
+      window.goatcounter.count({ path: el.dataset.goat, title: el.getAttribute("aria-label") || el.textContent.trim(), event: true });
     }
   });
 

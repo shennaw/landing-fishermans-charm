@@ -5,8 +5,9 @@ A static, dependency-free page for Fisherman's Charm: `index.html` (inline CSS a
 
 ## Before it goes live
 
-- **Store link:** the two "coming soon" buttons are placeholders (`aria-disabled`). Point them at the App Store
-  page once there is one, and change the headings from "Coming soon".
+- **Store link:** the hero and the "Get the game" section carry a "Download on the App Store" badge (drawn in
+  HTML/CSS, `.store-badge`) linking to https://apps.apple.com/us/app/fishermans-charm/id6815563793. Clicks
+  are counted in GoatCounter as `click-app-store-hero` and `click-app-store-buy`.
 - **Email sign-up:** set `SIGNUP_URL` at the bottom of `index.html` to a form endpoint (Formspree, Buttondown,
   Mailchimp...). While it is empty the sign-up form stays hidden.
 - **Link previews:** make `og:image` an absolute URL (`https://your-domain/img/og.jpg`).
